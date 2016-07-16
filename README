@@ -1,3 +1,8 @@
-IMPORTANT: This addon requires Wiremod to be installed! Get it here:
-Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=160250458
-Github: https://github.com/wiremod/wire
+#Wire Money Printer
+This is a DarkRP addon, which allows you to detect money (and optionally cheques) in a specified radius and report it to your wire system.
+This is extremely useful for automatic gunshops.
+
+##Important: This addon requires Wiremod to be installed! Get it here:
+
+* Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=160250458
+* Github: https://github.com/wiremod/wire
