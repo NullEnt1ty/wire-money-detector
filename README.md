@@ -6,3 +6,13 @@ This is extremely useful for automatic gunshops.
 
 * Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=160250458
 * Github: https://github.com/wiremod/wire
+
+## Features
+
+* Detect dropped money and (optionally) cheques.
+* Wire inputs to set the range and toggle cheque detection.
+* Displays a sphere when the tool is out. This helps to set the correct range.
+
+## Media
+
+https://youtu.be/BCXaNLoDAec
