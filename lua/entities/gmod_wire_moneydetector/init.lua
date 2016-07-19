@@ -9,21 +9,23 @@ include("shared.lua")
 function ENT:Initialize()
 	BaseClass.Initialize(self)
 
-	self.Inputs = WireLib.CreateInputs(self, { "Range", "AllowCheques" })
+	self.Inputs = WireLib.CreateInputs(self, { "Range", "AllowCheque", "AllowMoneyPot" })
 	self.Outputs = WireLib.CreateOutputs(self, { "Amount" })
 
 	self.lastAmount = 0
-	self.allowCheques = false
+	self.allowCheque = false
+	self.allowMoneyPot = false
 
 	self:UpdateOverlay()
 end
 
-function ENT:Setup(allowCheques, range)
+function ENT:Setup(allowCheque, allowMoneyPot, range)
 	if range then
 		self:SetRange(math.max(0, range))
 	end
 
-	self.allowCheques = allowCheques
+	self.allowCheque = allowCheque
+	self.allowMoneyPot = allowMoneyPot
 
 	self:UpdateOverlay()
 end
@@ -31,8 +33,10 @@ end
 function ENT:TriggerInput(name, value)
 	if name == "Range" then
 		self:SetRange(math.max(0, value))
-	elseif name == "AllowCheques" then
-		self.allowCheques = value != 0
+	elseif name == "AllowCheque" then
+		self.allowCheque = value != 0
+	elseif name == "AllowMoneyPot" then
+		self.allowMoneyPot = value != 0
 	end
 
 	self:UpdateOverlay()
@@ -60,8 +64,10 @@ function ENT:SearchForMoney()
 	for k,v in pairs(ents.FindInSphere(self:GetPos(), self:GetRange())) do
 		if v:GetClass() == "spawned_money" then
 			amount = amount + v:Getamount()
-		elseif v:GetClass() == "darkrp_cheque" and self.allowCheques and v:Getrecipient() == self:GetPlayer() then
+		elseif v:GetClass() == "darkrp_cheque" and self.allowCheque and v:Getrecipient() == self:GetPlayer() then
 			amount = amount + v:Getamount()
+		elseif v:GetClass() == "darkrp_moneypot" and self.allowMoneyPot then
+			amount = amount + v:GetMoney()
 		end
 	end
 
@@ -69,7 +75,10 @@ function ENT:SearchForMoney()
 end
 
 function ENT:UpdateOverlay()
-	self:SetOverlayText("Range = " .. self:GetRange() .. "\nAllow cheques = " .. tostring(self.allowCheques) .. "\nAmount = " .. self.lastAmount)
+	self:SetOverlayText("Range = " .. self:GetRange() ..
+		"\nAllow cheque = " .. tostring(self.allowCheque) ..
+		"\nAllow money pot = " .. tostring(self.allowMoneyPot) ..
+		"\nAmount = " .. self.lastAmount)
 end
 
-duplicator.RegisterEntityClass("gmod_wire_moneydetector", WireLib.MakeWireEnt, "Data", "allowCheques")
+duplicator.RegisterEntityClass("gmod_wire_moneydetector", WireLib.MakeWireEnt, "Data", "allowCheque", "allowMoneyPot")
