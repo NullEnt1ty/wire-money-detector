@@ -11,8 +11,11 @@ Also available on Steam Workshop: http://steamcommunity.com/sharedfiles/filedeta
 
 ## Features
 
-* Detects dropped money and (optionally) cheques.
-* Wire inputs to set the range and toggle cheque detection.
+* Detects
+    - Dropped money
+    - Cheques (optional)
+    - Money pots (optional)
+* Wire inputs to set the range and toggle detection of cheques and money pots.
 * Displays a sphere when the tool is out. This helps to set the correct range.
 
 ## Media
