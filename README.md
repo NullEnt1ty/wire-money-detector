@@ -17,6 +17,7 @@ Also available on Steam Workshop: http://steamcommunity.com/sharedfiles/filedeta
     - Money pots (optional)
 * Wire inputs to set the range and toggle detection of cheques and money pots.
 * Displays a sphere when the tool is out. This helps to set the correct range.
+* Maximum range option for superadmins.
 
 ## Media
 

@@ -21,7 +21,8 @@ end
 
 function ENT:Setup(allowCheque, allowMoneyPot, range)
 	if range then
-		self:SetRange(math.max(0, range))
+		local maxRange = math.min(range, GetConVarNumber("wire_money_detector_admin_maxrange"))
+		self:SetRange(math.max(0, maxRange))
 	end
 
 	self.allowCheque = allowCheque
